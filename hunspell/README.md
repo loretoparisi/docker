@@ -2,7 +2,15 @@
 [hunspell](https://github.com/hunspell/hunspell) and multiple languages [dictionaries](https://github.com/wooorm/dictionaries) docker container.
 
 ## How to build the Docker container
-To build the docker image from the Dockerfile folder 
+You can build build the docker image from the Dockerfile folder or from Docker repositories hub.
+
+To pull the [hunspell image](https://store.docker.com/community/images/loretoparisi/hunspell) from the repo
+
+```
+docker pull loretoparisi/hunspell
+```
+
+To build from this Dockerfile folder:
 
 ```
 docker build -t hunspell .
