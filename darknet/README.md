@@ -24,7 +24,80 @@ docker build -t darknet .
 
 This will build all layers, cache each of them with a opportunist caching of git repositories for hunspell and dictionaries stable branches.
 
-## How to test the image
+## How to build for CPU
+If you have a CPU only, you can build using the `Dockerfile` contained in the `cpu/` folder. You do
+
+```
+cd cpu/
+./build.sh
+```
+
+## How to build for Nvidia Docker GPU
+If you have a Nvidia Docker Host with GPU, you can build using the `Dockerfile` contained in the `gpu/` folder. You do
+```
+cd gpu/
+./build.sh
+```
+
+You can then run and enter the container doing
+```
+cd gpu/
+./run.sh
+```
+
+This will attach the `nvidia-docker` devices and drivers, enabling the GPU support. You will see a `nvidia-smi -q` command to test the `nvidia-docker` host gpu.
+
+You can then run and enter the container doing
+```
+cd cpu/
+./run.sh
+```
+
+To check your that `nvidia-docker` host is properly connected, you then can do
+
+```
+cd gpu/
+$ ./run.sh 
+# nvidia-smi
+Tue Mar 28 22:25:50 2017       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 367.57                 Driver Version: 367.57                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GRID K520           Off  | 0000:00:03.0     Off |                  N/A |
+| N/A   41C    P8    17W / 125W |      0MiB /  4036MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID  Type  Process name                               Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+```
+
+You should see your GPU connected.
+
+### A note about Makefile
+Note the the folder `gpu/` contains a `Makefile`. This is a modified version of the `darknet` makefile to match more recent architectures specifications:
+
+```
+ARCH= -gencode arch=compute_30,code=sm_30 \
+      -gencode arch=compute_35,code=sm_35 \
+      -gencode arch=compute_50,code=[sm_50,compute_50] \
+      -gencode arch=compute_52,code=[sm_52,compute_52]
+```
+
+You may want to specify you architecture here replacing the above lines with the following
+
+```
+ARCH=  -gencode arch=compute_52,code=compute_52
+```
+
+
+## How to test the docker image
 
 Then to run the container in interactive mode (bash) do
 

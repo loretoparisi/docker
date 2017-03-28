@@ -1,10 +1,10 @@
 #
-# Darkenet minimalistic Dockerfile
+# Darkenet GPU Dockerfile
 # @author Loreto Parisi (loretoparisi at gmail dot com)
 # v1.0.0
 # @2016 Loreto Parisi (loretoparisi at gmail dot com)
 #
-FROM ubuntu
+FROM nvidia/cuda:8.0-devel-ubuntu16.04
 
 
 MAINTAINER Loreto Parisi loretoparisi@gmail.com
@@ -28,8 +28,12 @@ RUN \
 
 # build repo
 RUN \
-	git clone https://github.com/pjreddie/darknet && \
-	cd darknet && \
+	git clone https://github.com/pjreddie/darknet
+
+WORKDIR darknet/
+COPY ./Makefile ./
+RUN \
+	sed -i 's/GPU=.*/GPU=1/' Makefile && \
 	make
 
 # download weights full (accurate most) and tiny (faster , less accurate) models
@@ -57,14 +61,8 @@ RUN \
 RUN \
 	wget pjreddie.com/media/files/go.weights >/dev/null 2>&1
 
-# test executable
-RUN \	
-	cd darknet/ && \
-	./darknet && \
-# test yolo
-	./darknet detector test cfg/coco.data cfg/yolo.cfg /root/yolo.weights data/dog.jpg && \
-# test rnns
-	./darknet rnn generate cfg/rnn.cfg /root/shakespeare.weights -srand 0 -seed CLEOPATRA -len 300
+# test nvidia docker
+CMD nvidia-smi -q
 
 # defaults command
 CMD ["bash"]
