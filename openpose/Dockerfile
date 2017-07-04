@@ -95,13 +95,25 @@ RUN cp /opt/opencv-3.1.0/build/lib/cv2.so /usr/lib/python2.7/dist-packages/cv2.s
 
 # install ATLAS
 # optionally need OpenBLAS or IntelMKL
-RUN apt-get install libatlas-base-dev
+RUN apt-get update && apt-get install -y \
+    libopenblas-dev \
+    libatlas-base-dev
+
+# see https://ahmedibrahimvt.wordpress.com/2017/02/19/fatal-error-hdf5-h-no-such-file-or-directory/
+RUN apt-get update && apt-get install -y \
+    libhdf5-10 \
+    libhdf5-serial-dev \
+    libhdf5-dev \
+    libhdf5-cpp-11
+# this stands for export ...
+ENV CPATH="/usr/include/hdf5/serial/"
 
 WORKDIR /root/
 
 # Build OpenPose + Caffe
+RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git
+COPY caffe/Makefile.config openpose/3rdparty/caffe/
 RUN \
-    git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git && \
     cd openpose && \
     chmod u+x install_caffe_and_openpose.sh && \
     ./install_caffe_and_openpose.sh
