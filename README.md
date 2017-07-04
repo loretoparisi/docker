@@ -14,6 +14,12 @@ Spelling corrector [hunspell](https://github.com/hunspell/hunspell) and multiple
 ### fairseq
 [Fairseq](https://github.com/facebookresearch/fairseq) is Facebook AI Research Sequence-to-Sequence Toolkit. It implements a convolutional NMT models for neural machine translation.
 
+### OpenPose
+[OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) A Real-Time Multi-Person Keypoint Detection And Multi-Threading C++ Library
+
+### OpenCV
+[OpenCV](http://opencv.org/) (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. 
+
 ## miscellaneous 
 A collection of utilities.
 
