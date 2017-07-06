@@ -19,28 +19,19 @@ RUN apt-get update && apt-get install -y \
   sudo
 
 # install dependencies
-RUN pip install numpy scipy scikit-learn sklearn
+RUN pip install numpy scipy nltk
 
 WORKDIR /root/
 
-# SentEval
-RUN git clone https://github.com/facebookresearch/SentEval.git
+# InferSent
+RUN git clone https://github.com/facebookresearch/InferSent.git
 
 # download dataset and models
 RUN \
-    cd SentEval/data && \
-    ./get_transfer_data.bash && \
-    cd .. && \
-    curl -Lo examples/infersent.allnli.pickle https://s3.amazonaws.com/senteval/infersent/infersent.allnli.pickle && \
-    curl -Lo examples/infersent.snli.pickle https://s3.amazonaws.com/senteval/infersent/infersent.snli.pickle && \
-    cd examples/ && \
-    ./get_glove.bash
-
-# test gloVe
-RUN python bow.py
-
-# test infersent tasks
-RUN python infersent.py
+    cd InferSent/dataset && \
+    ./get_data.bash && \
+    cd ../encoder && \
+    curl -Lo encoder/infersent.allnli.pickle https://s3.amazonaws.com/senteval/infersent/infersent.allnli.pickle
 
 # test nvidia docker
 CMD nvidia-smi -q
