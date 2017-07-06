@@ -107,12 +107,17 @@ RUN apt-get update && apt-get install -y \
     libhdf5-cpp-11
 # this stands for export ...
 ENV CPATH="/usr/include/hdf5/serial/"
+RUN \
+    cd /usr/lib/x86_64-linux-gnu && \
+    sudo ln -s libhdf5_serial.so.8.0.2 libhdf5.so && \
+    sudo ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so
 
 WORKDIR /root/
 
 # Build OpenPose + Caffe
 RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git
 COPY caffe/Makefile.config openpose/3rdparty/caffe/
+COPY caffe/Makefile openpose/3rdparty/caffe/
 RUN \
     cd openpose && \
     chmod u+x install_caffe_and_openpose.sh && \
