@@ -72,8 +72,7 @@ RUN \
 RUN \
     curl -O https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh && \
     yes "yes" | bash Anaconda3-4.2.0-Linux-x86_64.sh && \
-    source ~/.bashrc && \
-    ldconfig
+    source ~/.bashrc
 
 # conda dependencies: Intel MKL
 RUN conda install -c anaconda mkl-service

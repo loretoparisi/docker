@@ -15,12 +15,13 @@ RUN apt-get update && apt-get install -y \
   software-properties-common \
   ipython3 \
   python-dev \
-  python-pip \
+  python3-pip \
+  python3-numpy \
   p7zip-full
 
 
 # install theano and dependencies
-RUN pip install numpy scipy theano
+RUN pip3 install scipy theano
 
 ENV HOME /root
 WORKDIR $HOME
@@ -37,12 +38,13 @@ RUN git clone https://github.com/hidasib/GRU4Rec.git
 # anaconda
 RUN \
     curl -O https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh && \
-    yes "yes" | bash Anaconda3-4.2.0-Linux-x86_64.sh
-# update env
-RUN sudo bash -c ~/.bashrc
+    yes "yes" | bash Anaconda3-4.2.0-Linux-x86_64.sh && \
+    sudo -s source $HOME/.bashrc
 
 # conda dependencies: Intel MKL
-RUN conda install -c anaconda mkl-service
+RUN \
+    conda list && \
+    conda install -c anaconda mkl-service
 
 # test nvidia docker
 CMD nvidia-smi -q
