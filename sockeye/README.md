@@ -3,12 +3,19 @@
 
 # How to build
 To build the docker image run the build.sh script. An image named `sockeye-gpu` will be created.
-The built images will have the necessary parallel corpus to test a first translation model.
 
 ```
 git clone https://github.com/loretoparisi/docker.git
 cd docker/sockeye
 ./build.sh
+```
+
+The built images will have the necessary parallel corpus to test a first translation model:
+
+```
+newstest2014-deen-ref.de.sgm  newstest2014-deen-src.en.sgm  newstest2015-deen-ref.en.sgm  newstest2015-ende-src.en.sgm  newstest2016-deen-ref.en.sgm  newstest2016-ende-src.en.sgm  train.de
+newstest2014-deen-ref.en.sgm  newstest2014.tc.de            newstest2015-deen-src.de.sgm  newstest2015.tc.de            newstest2016-deen-src.de.sgm  newstest2016.tc.de            train.en
+newstest2014-deen-src.de.sgm  newstest2014.tc.en            newstest2015-ende-ref.de.sgm  newstest2015.tc.en            newstest2016-ende-ref.de.sgm  newstest2016.tc.en            train.sh
 ```
 
 # How to run
