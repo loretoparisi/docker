@@ -65,6 +65,9 @@ RUN apt-get update && apt-get install -y \
   libhdf5-dev \
   wget \
   sudo
+
+# OpenCV contrib (needed for OpenPose)
+RUN git clone https://github.com/opencv/opencv_contrib.git
     
 # install OpenCV
 RUN cd /opt && \
@@ -86,7 +89,9 @@ RUN cd /opt && \
     -D WITH_QT=ON \
     -D ENABLE_PRECOMPILED_HEADERS=OFF \
  #   -D USE_GStreamer=ON \
-    -D WITH_OPENGL=ON .. && \
+    -D WITH_OPENGL=ON .. \
+    # OpenCV Contrib
+    -D OPENCV_EXTRA_MODULES_PATH=opencv_contrib/modules .. && \
   make -j4 && \
   make install && \
   echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/opencv.conf && \
@@ -104,21 +109,36 @@ RUN apt-get update && apt-get install -y \
     libhdf5-10 \
     libhdf5-serial-dev \
     libhdf5-dev \
-    libhdf5-cpp-11
+    libhdf5-cpp-11 \
+    hdf5-helpers
+
 # this stands for export ...
+# /usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5_hl.so
+# /usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5_hl.so
 ENV CPATH="/usr/include/hdf5/serial/"
 RUN \
-    cd /usr/lib/x86_64-linux-gnu && \
-    sudo ln -s libhdf5_serial.so.8.0.2 libhdf5.so && \
-    sudo ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so
+    cd /usr/lib/x86_64-linux-gnu/hdf5/serial && \
+    # lib
+    sudo ln -s libhdf5_hl.so /usr/lib/libhdf5_hl.so && \
+    sudo ln -s libhdf5.so /usr/lib/libhdf5.so && \
+    # lib64
+    sudo ln -s libhdf5_hl.so /usr/local/lib/libhdf5_hl.so && \
+    sudo ln -s libhdf5.so /usr/local/lib/libhdf5.so && \
+    sudo ldconfig
 
 WORKDIR /root/
 
-# Build OpenPose + Caffe
+# get OpenPose and patch caffe makefiles
 RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git
 COPY caffe/Makefile.config openpose/3rdparty/caffe/
 COPY caffe/Makefile openpose/3rdparty/caffe/
+#COPY ubuntu/install_caffe_and_openpose_if_cuda8.sh openpose/ubuntu/
+
+# move me above!
+RUN sudo apt-get install -y lsb-release
+
+# install openpose and caffe
 RUN \
     cd openpose && \
-    chmod u+x install_caffe_and_openpose.sh && \
-    ./install_caffe_and_openpose.sh
+    bash ./ubuntu/install_caffe_and_openpose_if_cuda8.sh
+

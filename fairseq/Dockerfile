@@ -68,25 +68,15 @@ RUN \
     git checkout origin/R6 && \
     luarocks make cudnn-scm-1.rockspec
 
-# Install MKL
-#RUN apt-get install -y wget
-#ENV MKL_PATH=/opt/intel
-#RUN cd /tmp && \
-# Download MKL install package
-#  wget -q http://registrationcenter-download.intel.com/akdlm/irc_nas/8374/l_mkl_11.3.1.150.tgz && \
-# Install MKL
-#  tar -xzf l_mkl_11.3.1.150.tgz && cd l_mkl_11.3.1.150 && \
-#  sed -i 's/ACCEPT_EULA=decline/ACCEPT_EULA=accept/g' silent.cfg && \
-#  sed -i 's/ACTIVATION_TYPE=exist_lic/ACTIVATION_TYPE=trial_lic/g' silent.cfg && \
-#  ./install.sh -s silent.cfg && \
-# Clean up
-#  cd .. && rm -rf *
+# anaconda
+RUN \
+    curl -O https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh && \
+    yes "yes" | bash Anaconda3-4.2.0-Linux-x86_64.sh && \
+    source ~/.bashrc && \
+    ldconfig
 
-# Add to path
-# ENV PATH ${CUDA_PATH}/bin:${PATH}
-# Configure dynamic link
-#RUN echo "${MKL_PATH}/mkl/lib/intel64" >> /etc/ld.so.conf.d/intel.conf && ldconfig && \
-#  echo ". /opt/intel/bin/compilervars.sh intel64" >> /etc/bash.bashrc
+# conda dependencies: Intel MKL
+RUN conda install -c anaconda mkl-service
 
 WORKDIR /root/
 
