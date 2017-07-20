@@ -22,6 +22,9 @@ Spelling corrector [hunspell](https://github.com/hunspell/hunspell) and multiple
 ### OpenCV
 [OpenCV](http://opencv.org/) (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. 
 
+### Sockeye
+[Sockeye](https://github.com/awslabs/sockeye) is a sequence-to-sequence framework for Neural Machine Translation based on Apache MXNet. It implements the well-known encoder-decoder architecture with attention.
+
 ## miscellaneous 
 A collection of utilities.
 
