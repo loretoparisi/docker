@@ -4,7 +4,7 @@
 # v1.0.0
 # @2016 Loreto Parisi (loretoparisi at gmail dot com)
 #
-FROM ubuntu
+FROM ubuntu:16.04
 
 
 MAINTAINER Loreto Parisi loretoparisi@gmail.com

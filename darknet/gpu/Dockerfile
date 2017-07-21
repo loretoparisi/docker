@@ -4,7 +4,7 @@
 # v1.0.0
 # @2016 Loreto Parisi (loretoparisi at gmail dot com)
 #
-FROM nvidia/cuda:8.0-devel-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
 
 MAINTAINER Loreto Parisi loretoparisi@gmail.com
