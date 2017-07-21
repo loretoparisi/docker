@@ -1,6 +1,7 @@
 #
 # Train Neural Machine Translation Models with Sockeye
 # @see https://aws.amazon.com/it/blogs/ai/train-neural-machine-translation-models-with-sockeye/
+# @see https://github.com/awslabs/sockeye
 #
 
 FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
