@@ -51,5 +51,8 @@ RUN \
 # test nvidia docker
 CMD nvidia-smi -q
 
+# copy run script
+COPY train.sh $HOME/train.sh
+
 # defaults command
 CMD ["bash"]
