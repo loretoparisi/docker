@@ -1,6 +1,7 @@
 #
-# OpenCV 3
+# OpenCV 3 - http://opencv.org/
 #
+# Copyright (c) 2017 Loreto Parisi - https://github.com/loretoparisi/docker
 #
 
 FROM ubuntu:16.04

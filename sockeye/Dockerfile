@@ -3,6 +3,8 @@
 # @see https://aws.amazon.com/it/blogs/ai/train-neural-machine-translation-models-with-sockeye/
 # @see https://github.com/awslabs/sockeye
 #
+# Copyright (c) 2017 Loreto Parisi - https://github.com/loretoparisi/docker
+#
 
 FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 

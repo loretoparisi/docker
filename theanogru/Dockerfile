@@ -2,6 +2,8 @@
 # GRU4Rec - "Session-based Recommendations With Recurrent Neural Networks". 
 # @see https://github.com/hidasib/GRU4Rec
 #
+# Copyright (c) 2017 Loreto Parisi - https://github.com/loretoparisi/docker
+#
 
 FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
@@ -13,15 +15,9 @@ RUN apt-get update && apt-get install -y \
   sudo \
   curl \
   software-properties-common \
-  ipython3 \
+  python-pip \
   python-dev \
-  python3-pip \
-  python3-numpy \
   p7zip-full
-
-
-# install theano and dependencies
-RUN pip3 install scipy theano
 
 ENV HOME /root
 WORKDIR $HOME
@@ -35,6 +31,11 @@ RUN \
 # GRU4Rec
 RUN git clone https://github.com/hidasib/GRU4Rec.git
 
+# upgrade pip
+RUN pip install --upgrade pip
+# install theano and dependencies
+RUN pip install scipy numpy
+
 # anaconda
 RUN \
     curl -O https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh && \
@@ -42,9 +43,10 @@ RUN \
     sudo -s source $HOME/.bashrc
 
 # conda dependencies: Intel MKL
+# @see https://unix.stackexchange.com/questions/379816/install-anaconda-in-ubuntu-docker
 RUN \
-    conda list && \
-    conda install -c anaconda mkl-service
+    /root/yes/bin/conda install -c anaconda mkl-service && \
+    /root/yes/bin/conda install theano
 
 # test nvidia docker
 CMD nvidia-smi -q

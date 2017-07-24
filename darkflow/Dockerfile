@@ -5,6 +5,9 @@
 # @see https://github.com/thtrieu/darkflow
 # @see https://hub.docker.com/r/tensorflow/tensorflow/tags/
 #
+# Copyright (c) 2017 Loreto Parisi - https://github.com/loretoparisi/docker
+#
+
 FROM tensorflow/tensorflow:latest-gpu-py3
 
 MAINTAINER Loreto Parisi loretoparisi@gmail.com

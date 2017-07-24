@@ -5,6 +5,8 @@
 # @see https://openreview.net/forum?id=SyK00v5xx
 # @see https://github.com/PrincetonML/SIF
 #
+# Copyright (c) 2017 Loreto Parisi - https://github.com/loretoparisi/docker
+#
 
 FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 

@@ -2,8 +2,10 @@
 # Darkenet GPU Dockerfile
 # @author Loreto Parisi (loretoparisi at gmail dot com)
 # v1.0.0
-# @2016 Loreto Parisi (loretoparisi at gmail dot com)
 #
+# Copyright (c) 2017 Loreto Parisi - https://github.com/loretoparisi/docker
+#
+
 FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
 

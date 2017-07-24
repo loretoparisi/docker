@@ -4,6 +4,8 @@
 #
 # @see https://github.com/CMU-Perceptual-Computing-Lab/openpose
 #
+# Copyright (c) 2017 Loreto Parisi - https://github.com/loretoparisi/docker
+#
 
 FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
