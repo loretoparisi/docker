@@ -20,15 +20,17 @@ class Logger(object):
     def __init__(self, filename="Default.log"):
         self.terminal = sys.stdout
         self.log = open(filename, "a")
-
     def write(self, message):
         self.terminal.write(message)
         self.log.write(message)
+    def flush(self):
+        pass
 
-sys.stdout = Logger( os.environ['HOME' ] + '/vartheano.log' )
+sys.stdout = Logger( os.environ['HOME' ] + '/theano.log' )
 
 PATH_TO_TRAIN = os.environ['HOME']+'/rsc15_train_full.txt'
 PATH_TO_TEST = os.environ['HOME']+'/rsc15_test.txt'
+LAYERS = 1
 
 if __name__ == '__main__':
     data = pd.read_csv(PATH_TO_TRAIN, sep='\t', dtype={'ItemId':np.int64})
@@ -36,9 +38,9 @@ if __name__ == '__main__':
     
     #Reproducing results from "Session-based Recommendations with Recurrent Neural Networks" on RSC15 (http://arxiv.org/abs/1511.06939)
     
-    print('Training GRU4Rec with 100 hidden units')    
+    print('Training GRU4Rec with ' + LAYERS + ' hidden units')    
     
-    gru = gru4rec.GRU4Rec(loss='top1', final_act='tanh', hidden_act='tanh', layers=[100], batch_size=50, dropout_p_hidden=0.5, learning_rate=0.01, momentum=0.0, time_sort=False)
+    gru = gru4rec.GRU4Rec(loss='top1', final_act='tanh', hidden_act='tanh', layers=[LAYERS], batch_size=50, dropout_p_hidden=0.5, learning_rate=0.01, momentum=0.0, time_sort=False)
     gru.fit(data)
     
     res = evaluation.evaluate_sessions_batch(gru, valid, None)
@@ -50,7 +52,7 @@ if __name__ == '__main__':
     
     print('Training GRU4Rec with 100 hidden units')
 
-    gru = gru4rec.GRU4Rec(loss='bpr-max-0.5', final_act='linear', hidden_act='tanh', layers=[100], batch_size=32, dropout_p_hidden=0.0, learning_rate=0.2, momentum=0.5, n_sample=2048, sample_alpha=0, time_sort=True)
+    gru = gru4rec.GRU4Rec(loss='bpr-max-0.5', final_act='linear', hidden_act='tanh', layers=[LAYERS], batch_size=32, dropout_p_hidden=0.0, learning_rate=0.2, momentum=0.5, n_sample=2048, sample_alpha=0, time_sort=True)
     gru.fit(data)
     
     res = evaluation.evaluate_sessions_batch(gru, valid, None)

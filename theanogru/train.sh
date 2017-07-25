@@ -2,4 +2,4 @@
 
 # training
 echo "Traininig...."
-python run_rsc15.py &
+python3 run_rsc15.py &

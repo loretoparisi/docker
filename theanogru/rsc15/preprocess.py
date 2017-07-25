@@ -6,6 +6,7 @@ Created on Fri Jun 25 16:20:12 2015
 @lastmodified: Loreto Parisi (loretoparisi at gmail dot com)
 """
 
+import sys
 import os
 import numpy as np
 import pandas as pd
@@ -16,10 +17,12 @@ class Logger(object):
     def __init__(self, filename="Default.log"):
         self.terminal = sys.stdout
         self.log = open(filename, "a")
-
     def write(self, message):
         self.terminal.write(message)
         self.log.write(message)
+    def flush(self):
+        pass
+sys.stdout = Logger( os.environ['HOME' ] + '/theano.log' )
 
 PATH_TO_ORIGINAL_DATA = os.environ['HOME'] + '/'
 PATH_TO_PROCESSED_DATA = os.environ['HOME'] + '/'
