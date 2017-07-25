@@ -5,7 +5,7 @@
 # Copyright (c) 2017 Loreto Parisi - https://github.com/loretoparisi/docker
 #
 
-FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
 
 MAINTAINER Loreto Parisi <loretoparisi@gmail.com>
 
@@ -51,8 +51,12 @@ RUN \
 # test nvidia docker
 CMD nvidia-smi -q
 
-# copy run script
+# copy scripts
+COPY theanorc $HOME/.theanorc
 COPY train.sh $HOME/train.sh
+COPY process.sh $HOME/process.sh
+COPY gpu_test.py $HOME/gpu_test.py
+COPY rsc15 GRU4Rec/examples/rsc15
 
 # defaults command
 CMD ["bash"]
