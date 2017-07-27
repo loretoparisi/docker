@@ -110,3 +110,15 @@ if __name__ == '__main__':
         preds += np.random.rand(*preds.values.shape) * 1e-8
 
     print('Preds: {}'.format(preds))
+
+    # save model
+    fd = open('model','wb')
+    dump(gru,fd)
+    fd.close()
+
+    #load model
+    fd = open('model','rb')
+    md = load(fd)
+
+    print('Model: {}'.format(md))
+    
