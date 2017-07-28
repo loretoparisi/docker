@@ -63,7 +63,7 @@ RUN \
     sudo ldconfig
 
 # GRU4Rec
-RUN git clone https://github.com/hidasib/GRU4Rec.git
+RUN git clone https://github.com/loretoparisi/GRU4Rec.git
 
 # RecSys Challenge 2015
 # http://2015.recsyschallenge.com/challenge.html
