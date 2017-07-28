@@ -14,6 +14,7 @@ import numpy as np
 import pandas as pd
 import gru4rec
 import evaluation
+from theano.misc.pkl_utils import dump,load
 
 # To redirect output to file
 class Logger(object):
@@ -112,13 +113,9 @@ if __name__ == '__main__':
     print('Preds: {}'.format(preds))
 
     # save model
-    fd = open('model','wb')
+    fd = open( os.environ['HOME' ] + 'model.theano','wb')
     dump(gru,fd)
     fd.close()
-
-    #load model
-    fd = open('model','rb')
-    md = load(fd)
 
     print('Model: {}'.format(md))
     

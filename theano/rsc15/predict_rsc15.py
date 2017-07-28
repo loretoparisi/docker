@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
 
     #load model
-    fd = open('model','rb')
+    fd = open( os.environ['HOME' ] + 'model.theano','rb')
     gru = load(fd)
 
     print('Model: {}'.format(gru))
