@@ -1,4 +1,4 @@
 #!/bin/bash
 # demo
-cd SIF/examples
-./demo.sh
+cd SIF/src
+python train.py

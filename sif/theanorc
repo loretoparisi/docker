@@ -1,0 +1,9 @@
+[global]
+floatX = float64
+device = cpu
+
+[lib]
+cnmem = 1
+
+[nvcc]
+fastmath = True

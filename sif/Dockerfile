@@ -41,6 +41,8 @@ CMD nvidia-smi -q
 
 # copy run script
 COPY train.sh $HOME/train.sh
+COPY demo.sh $HOME/demo.sh
+COPY theanorc $HOME/.theanorc
 
 # defaults command
 CMD ["train.sh"]
