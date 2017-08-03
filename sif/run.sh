@@ -1,9 +1,9 @@
 #!/bin/bash
 
 IMAGE=sif-gpu
-if [ $1="train" ]; then
+if [ "$1" == "train" ]; then
 CMD=./train.sh
-elif [ $1="demo" ]; then
+elif [ "$1" == "demo" ]; then
 CMD=./demo.sh
 else
 CMD=bash
