@@ -12,7 +12,7 @@ FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 MAINTAINER Loreto Parisi loretoparisi@gmail.com
 
 # working directory
-WORKDIR /root
+WORKDIR /darknet
 
 # install
 RUN \
