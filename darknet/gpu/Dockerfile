@@ -30,7 +30,7 @@ RUN \
 
 # build repo
 RUN \
-	git clone https://github.com/pjreddie/darknet
+	git clone https://github.com/loretoparisi/darknet
 
 WORKDIR darknet/
 COPY ./Makefile ./
@@ -42,6 +42,7 @@ RUN \
 # darknet rnns
 RUN \ 
 	wget http://pjreddie.com/media/files/yolo.weights >/dev/null 2>&1 && \
+	wget http://pjreddie.com/media/files/yolo9000.weights >/dev/null 2>&1 && \
 	wget http://pjreddie.com/media/files/tiny-yolo-voc.weights >/dev/null 2>&1
 	
 # darknet nightmare	
