@@ -34,7 +34,11 @@ RUN pip install --upgrade pip
 # numlib
 RUN pip install numpy scipy 
 # theano and lasagne
-RUN pip install theano lasagne
+RUN pip install theano
+RUN pip install https://github.com/Lasagne/Lasagne/archive/master.zip # last working version of Lasagne
+
+# utility dependencies
+RUN pip install python-Levenshtein sklearn
 
 # HTK
 RUN \
