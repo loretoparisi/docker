@@ -5,8 +5,9 @@
 #
 # Copyright (c) 2017 Loreto Parisi - https://github.com/loretoparisi/docker
 #
-
 FROM ubuntu:16.04
+
+MAINTAINER Loreto Parisi <loretoparisi@gmail.com>
 
 # working directory
 ENV HOME /root
