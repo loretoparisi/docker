@@ -51,8 +51,9 @@ RUN \
 
 # pdnn
 # @see https://www.cs.cmu.edu/~ymiao/pdnntk.html
-RUN \
-    git clone https://github.com/yajiemiao/pdnn && \
-    export PYTHONPATH=$HOME/pdnn:$PYTHONPATH
+RUN git clone https://github.com/yajiemiao/pdnn
+
+# env
+ENV PYTHONPATH $HOME/pdnn:$PYTHONPATH
 
 CMD ["bash"]
