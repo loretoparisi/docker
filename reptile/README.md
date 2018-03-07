@@ -30,3 +30,7 @@ root@e51bb89514a7:~# python reptile-sinewaves-demo.py
 iteration               {iteration+1}
 loss on plotted curve   {lossval:.3f}
 ```
+
+The `XQuartz` server will start and you should see `matplotlib` working
+
+<img width="640" alt="schermata 2018-03-08 alle 00 39 04" src="https://user-images.githubusercontent.com/163333/37124591-42f6996c-2269-11e8-83d5-a13f85492f4c.png">
