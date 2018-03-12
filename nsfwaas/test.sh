@@ -14,6 +14,10 @@ if [ -z "$PORT" ]; then
 PORT=9080
 fi
 
+if [ -z "$DATA" ]; then
+DATA=data/
+fi
+
 # go throuh images folder and test
 for FILE in $DATA/*; do
     FBASE=$(basename "$FILE")
