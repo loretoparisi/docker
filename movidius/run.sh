@@ -7,4 +7,4 @@
 
 IMAGE=movidius
 #docker run --rm -it --privileged --device=/dev/tty.usbserial  $IMAGE bash
-docker run --rm -it --net=host --privileged --device=/dev/usb/hiddev4  $IMAGE bash
+docker run --rm -it  $IMAGE bash

@@ -1,0 +1,3 @@
+[submodule "tcn/TCN"]
+	path = tcn/TCN
+	url = https://github.com/locuslab/TCN.git
