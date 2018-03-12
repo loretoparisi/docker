@@ -18,4 +18,4 @@ fi
 docker run -p $PORT:$PORT/tcp $IMAGE
 
 # test
-curl -X POST -F "image=@pam.jpg" http://localhost:$PORT/classify
+curl -X POST -F "image=@data/pam.jpg" http://localhost:$PORT/classify
