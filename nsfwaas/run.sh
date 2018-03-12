@@ -14,8 +14,5 @@ if [ -z "$PORT" ]; then
 PORT=9080
 fi
 
-# bind port and run web service
-docker run -p $PORT:$PORT/tcp $IMAGE
-
-# test
-curl -X POST -F "image=@data/pam.jpg" http://localhost:$PORT/classify
+# bind port and run as a detached web service
+docker run -td -p $PORT:$PORT/tcp $IMAGE
