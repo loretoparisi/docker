@@ -21,6 +21,8 @@ fi
 
 # 
 # Pre-process the dump with Munger utility:
+# Run in background and append output to nohup
+# This is necessary since the container runs as a deamon
 #
 # The option -l en only imports English labels. 
 # The option -s skips the sitelinks, for smaller storage and better performance. 
@@ -28,7 +30,7 @@ fi
 # either add them to the list - -l en,de,ru - or skip the language option altogether. 
 # If you need sitelinks, remove the -s option.
 #
-nohup ./munge.sh -f /root/data/wikidata-20180319-all-BETA.ttl.gz -d /root/data/split -l en &
+nohup ./munge.sh -f $ROOT/data/$WIKIDATA_DUMP_FILE -d /root/data/split -l en &
 
 # This will load the data files one by one into the Blazegraph data store. 
 # Note that you need curl to be installed for it to work.
