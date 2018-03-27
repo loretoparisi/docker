@@ -4,29 +4,43 @@ The tool does Grapheme-to-Phoneme (G2P) conversion using recurrent neural networ
 See [g2p-seq2seq](https://github.com/cmusphinx/g2p-seq2seq) for more details.
 
 ## Running G2P in Docker
-Start and run as a daemon the G2P container `g2p-seq2seq` and attach a volume to exchange models and data. Please use a absolute path for the host folder
+Start and run as a daemon the G2P container `g2p-seq2seq` and attach a volume to exchange models and data in the container `/root/data` folder, please use a absolute path for the host folder like `$HOME/data`
 
 ```
 $ docker run -td -v $HOME/data:/root/data g2p-seq2seq
 ```
 
-To connect to the daemon and run inference from the model saved in the `test/` folder
+You should then see a container istance up:
 ```
-$ docker exec -it 8170da962175 bash
-root@8170da962175:~# echo "hello" | g2p-seq2seq --interactive --model test
+CONTAINER ID    IMAGE           COMMAND     CREATED             STATUS          PORTS                   NAMES
+5a603fa31d38    g2p-seq2seq     "bash"      3 seconds ago       Up 2 seconds    6006/tcp, 8888/tcp      goofy_shaw
+```
+
+To connect to the container and check the data was attached to the container
+```
+$ docker exec -it 5a603fa31d38 bash
+root@5a603fa31d38:~# ls -l ./data/
+total 8
+drwxrwxr-x 4 1000 1000 4096 Mar 27 09:00 dict
+drwxrwxr-x 3 1000 1000 4096 Mar 27 09:00 models
+```
+
+To run an inference from a seq2seq model saved in the `data/models` folder like the `cmudict/`
+```
+root@5a603fa31d38:~# echo "hello" | g2p-seq2seq --interactive --model data/models/cmudict/
 Loading vocabularies from test
 Creating 2 layers of 64 units.
 Reading model parameters from test
 > HH EH1 L OW0
 ```
 
-To train a new model using the CMUDict and save the model in the `test/` folder
+To train a new model using the CMUDict in the `data/dict/cmudict` folder and save a model in the `data/models/cmudict` folder
 ```
-$ g2p-seq2seq --train cmudict/cmudict.dict --model test &
+$ g2p-seq2seq --train data/dict/cmudict/cmudict.dict --model test &
 ```
 
-To copy saved model from the `g2p-seq2seq` container to a host local volume, supposed that the container id was `8170da962175`
+If you are not allowed to share a volume between the host and the container, you can ccopy a saved model from the `g2p-seq2seq` container to a host local volume, supposed that the container id was `5a603fa31d38`
 
 ```
-$ docker cp 8170da962175:/root/test ./models
+$ docker cp 5a603fa31d38:/root/test ./models
 ```
