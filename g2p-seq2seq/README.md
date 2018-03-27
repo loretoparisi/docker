@@ -4,14 +4,10 @@ The tool does Grapheme-to-Phoneme (G2P) conversion using recurrent neural networ
 See [g2p-seq2seq](https://github.com/cmusphinx/g2p-seq2seq) for more details.
 
 ## Running G2P in Docker
-Start and run as a daemon the G2P container `g2p-seq2seq` and attach a volume to exchange model data
-```
-$ docker run -td -v $HOME:/models g2p-seq2seq
-```
+Start and run as a daemon the G2P container `g2p-seq2seq` and attach a volume to exchange models and data. Please use a absolute path for the host folder
 
-To train a new model using the CMUDict and save the model in the `test/` folder
 ```
-$ g2p-seq2seq --train cmudict/cmudict.dict --model test &
+$ docker run -td -v $HOME/data:/root/data g2p-seq2seq
 ```
 
 To connect to the daemon and run inference from the model saved in the `test/` folder
@@ -22,6 +18,11 @@ Loading vocabularies from test
 Creating 2 layers of 64 units.
 Reading model parameters from test
 > HH EH1 L OW0
+```
+
+To train a new model using the CMUDict and save the model in the `test/` folder
+```
+$ g2p-seq2seq --train cmudict/cmudict.dict --model test &
 ```
 
 To copy saved model from the `g2p-seq2seq` container to a host local volume, supposed that the container id was `8170da962175`
