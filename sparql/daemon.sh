@@ -6,12 +6,19 @@
 #
 
 # wikidata dump volume folder
-VOLUME=$1
+LOCAL_VOLUME=$1
 # service port
 PORT=$2
+# command to launch
+CMD=$3
+
 # image root folder
-ROOT=/root
+HOST_VOLUME=/root/data
 IMAGE=sparql
 
-# attach volume and run import script
-docker run -v $VOLUME:$ROOT $IMAGE
+if [ -z "$PORT" ]; then
+PORT=9999
+fi
+
+# bind port, attach volume and run as daemon
+docker run -td -v $LOCAL_VOLUME:$HOST_VOLUME -p $PORT:$PORT/tcp $IMAGE
