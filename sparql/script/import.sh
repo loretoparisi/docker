@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # SPARQL Build Script
 # @author Loreto Parisi (loretoparisi at gmail dot com)
@@ -16,7 +17,16 @@ WIKIDATA_DUMP_FILE=wikidata-20180319-all-BETA.ttl.gz
 # check if data file dir exists already
 #
 if [ ! -d "$ROOT/data/split" ]; then
+  echo Creating data split folder at "$ROOT/data/split"
   mkdir $ROOT/data/split
+fi
+
+#
+# check wikidata file existance
+#
+if [ ! -f "$ROOT/data/$WIKIDATA_DUMP_FILE" ]; then
+  echo The wikidata file does not exist
+  exit
 fi
 
 # 
@@ -30,8 +40,13 @@ fi
 # either add them to the list - -l en,de,ru - or skip the language option altogether. 
 # If you need sitelinks, remove the -s option.
 #
-nohup ./munge.sh -f $ROOT/data/$WIKIDATA_DUMP_FILE -d /root/data/split -l en &
+nohup ./munge.sh -f $ROOT/data/$WIKIDATA_DUMP_FILE -d $ROOT/data/split -l en &
 
+#
 # This will load the data files one by one into the Blazegraph data store. 
 # Note that you need curl to be installed for it to work.
-./loadRestAPI.sh -n wdq -d `pwd` $ROOT/data/split
+#
+# Run in background and append output to nohup
+# This is necessary since the container runs as a deamon
+#
+nohup ./loadRestAPI.sh -n wdq -d $ROOT/data/split &

@@ -48,6 +48,11 @@ RUN \
     cd service-*/ && \
     cp -r $(pwd) $HOME/blazegraph/
 
+# overwrite Blazegraph properties file
+# change journal file location
+COPY blazegraph/RWStore.properties $HOME/blazegraph/
+# fix this replace and remove the absolute path from properties file
+#RUN sed -i "s/com.bigdata.journal.AbstractJournal.file=wikidata.jnl/com.bigdata.journal.AbstractJournal.file=$HOME\/data\/wikidata.jnl/g" $HOME/blazegraph/RWStore.properties
 ENV DATA_ROOT $HOME/data
 WORKDIR $HOME/blazegraph
 

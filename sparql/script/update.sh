@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # SPARQL Build Script
 # @author Loreto Parisi (loretoparisi at gmail dot com)

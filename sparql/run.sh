@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # SPARQL Build Script
 # @author Loreto Parisi (loretoparisi at gmail dot com)
@@ -21,7 +22,7 @@ PORT=9999
 fi
 
 if [ -z "$CMD" ]; then
-    CMD="bash ./runBlazegraph.sh"
+    CMD="bash ./runBlazegraph.sh 2>&1 >> ./out.log &"
 fi
 
 # bind port, attach volume and run
