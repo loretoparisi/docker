@@ -124,8 +124,8 @@ RUN \
     cd darkflow && \
     mkdir bin && cd bin/ && \
 	wget http://pjreddie.com/media/files/yolo.weights >/dev/null 2>&1 && \
-    wget http://pjreddie.com/media/files/tiny-yolo-voc.weights >/dev/null 2>&1 && \
-    wget https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolo.cfg >/dev/null 2>&1 && \
+    wget https://github.com/leetenki/YOLOtiny_v2_chainer/raw/master/tiny-yolo-voc.weights >/dev/null 2>&1 && \
+    wget https://github.com/thtrieu/darkflow/blob/master/cfg/yolo.cfg >/dev/null 2>&1 && \
     cd ..
 
 RUN \
