@@ -144,3 +144,5 @@ RUN python3 -c "import cv2; print(cv2.__version__)"
 RUN echo "./flow3 --model bin/yolo.cfg --load bin/yolo.weights --demo samples/video_1.avi --gpu .8 --saveVideo"
 CMD ["bash"]
 
+#install TF python module
+RUN python3 setup.py build_ext --inplace
