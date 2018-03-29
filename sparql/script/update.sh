@@ -20,4 +20,4 @@ WIKIDATA=wikidata-20150427-all-BETA.ttl.gz
 # as updater only picks up recently edited items. Use the same set of language/skip 
 # options as in the munge.sh script, e.g. -l en -s.
 #
-./runUpdate.sh -n wdq
+./runUpdate.sh 2>&1 >> ./update.log &
