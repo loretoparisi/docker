@@ -35,8 +35,9 @@ RUN \
 RUN \
     git clone https://github.com/cmusphinx/cmudict
 
+# clone g2p-seq2seq.git fork
 RUN \
-    git clone https://github.com/cmusphinx/g2p-seq2seq.git && \
+    git clone https://github.com/loretoparisi/g2p-seq2seq.git && \
     cd g2p-seq2seq/ && \
     python setup.py install && \
     cd -
