@@ -15,6 +15,9 @@ BLAZEGRAPH_HOME=/root/blazegraph
 # example: /root/wikidata
 ROOT=/root/data
 
+# blazegraph log file
+LOGS=$ROOT/import.log
+
 #
 # munge the wikidata dump
 # create data files for munge
@@ -35,4 +38,4 @@ cd $BLAZEGRAPH_HOME/
 # Run in background and append output to nohup
 # This is necessary since the container runs as a deamon
 #
-nohup ./loadRestAPI.sh -n wdq -d $ROOT/split &
+nohup ./loadRestAPI.sh -n wdq -d $ROOT/split 2>&1 >> $LOGS &

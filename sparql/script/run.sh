@@ -18,11 +18,15 @@ ROOT=/root/data
 # blazegraph log file
 LOGS=$ROOT/server.log
 
-# blazegraph host in the docker container
+# blazegraph default host in the docker container
 # must listen on all interfaces
 # to accept incoming connections from the HOST IP
 HOST=0.0.0.0
 export HOST=$HOST
+
+# blazegraph default server port
+PORT=9999
+export PORT=$PORT
 
 # entering blazegraph root folder
 cd $BLAZEGRAPH_HOME/

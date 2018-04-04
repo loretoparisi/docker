@@ -15,6 +15,9 @@ BLAZEGRAPH_HOME=/root/blazegraph
 # example: /root/wikidata
 ROOT=/root/data
 
+# blazegraph log file
+LOGS=$ROOT/split.log
+
 # wikidata dump
 WIKIDATA_DUMP_FILE=wikidata-20180326-all-BETA.ttl.gz
 
@@ -50,5 +53,5 @@ cd $BLAZEGRAPH_HOME/
 # either add them to the list - -l en,de,ru - or skip the language option altogether. 
 # If you need sitelinks, remove the -s option.
 #
-nohup ./munge.sh -f $ROOT/$WIKIDATA_DUMP_FILE -d $ROOT/split -l en &
+nohup ./munge.sh -f $ROOT/$WIKIDATA_DUMP_FILE -d $ROOT/split -l en 2>&1 >> $LOGS &
 
