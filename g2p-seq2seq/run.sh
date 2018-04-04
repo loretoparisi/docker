@@ -15,7 +15,7 @@ if [ -z "$DATA_HOST" ]; then
 fi
 
 if [ -z "$IMAGE" ]; then
-    $IMAGE=g2p-seq2seq
+    IMAGE=g2p-seq2seq
 fi
 
 # run as daemon to support async training
