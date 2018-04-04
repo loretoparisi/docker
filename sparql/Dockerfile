@@ -48,6 +48,9 @@ RUN \
     cd service-*/ && \
     cp -r $(pwd) $HOME/blazegraph/
 
+# copy utility scripts
+COPY script $HOME/script
+
 # overwrite Blazegraph properties file
 # change journal file location
 COPY blazegraph/RWStore.properties $HOME/blazegraph/
