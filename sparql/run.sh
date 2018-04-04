@@ -10,6 +10,10 @@
 LOCAL_VOLUME=$1
 # service port
 PORT=$2
+# blazegraph host in the docker container
+# must listen on all interfaces
+# to accept incoming connections from the HOST IP
+HOST=0.0.0.0
 # command to launch
 CMD=$3
 
@@ -21,7 +25,10 @@ if [ -z "$PORT" ]; then
 PORT=9999
 fi
 
+export HOST=$HOST
+
 if [ -z "$CMD" ]; then
+    echo "Running on $HOST:$PORT"
     CMD="bash ./runBlazegraph.sh 2>&1 >> ./out.log &"
 fi
 
