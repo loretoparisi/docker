@@ -6,20 +6,28 @@
 # @2018 Loreto Parisi (loretoparisi at gmail dot com)
 #
 
+# image root folder
+HOST_VOLUME=/root/data
+IMAGE=sparql
+
 # wikidata dump volume folder
+# it will contain the split folder
+# and the wikidata journal file: wikidata.jnl
+# example: /root/wikidata
 LOCAL_VOLUME=$1
+
 # service port
 PORT=$2
+
+# command to launch
+CMD=$3
+
 # blazegraph host in the docker container
 # must listen on all interfaces
 # to accept incoming connections from the HOST IP
 HOST=0.0.0.0
-# command to launch
-CMD=$3
-
-# image root folder
-HOST_VOLUME=/root/data
-IMAGE=sparql
+# blazegraph log file
+LOGS=$HOST_VOLUME/server.log
 
 if [ -z "$PORT" ]; then
 PORT=9999
@@ -29,7 +37,7 @@ export HOST=$HOST
 
 if [ -z "$CMD" ]; then
     echo "Running on $HOST:$PORT"
-    CMD="bash ./runBlazegraph.sh 2>&1 >> ./out.log &"
+    CMD="bash ./runBlazegraph.sh 2>&1 >> $LOGS &"
 fi
 
 # bind port, attach volume and run
