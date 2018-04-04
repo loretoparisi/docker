@@ -7,24 +7,28 @@
 #
 
 # wikidata dump volume folder
-ROOT=/root
+# it will contain the split folder
+# and the wikidata journal file: wikidata.jnl
+# example: /root/wikidata
+ROOT=/root/data
+
 # wikidata dump
-WIKIDATA_DUMP_FILE=wikidata-20180319-all-BETA.ttl.gz 
+WIKIDATA_DUMP_FILE=wikidata-20180326-all-BETA.ttl.gz
 
 #
 # munge the wikidata dump
 # create data files for munge
 # check if data file dir exists already
 #
-if [ ! -d "$ROOT/data/split" ]; then
-  echo Creating data split folder at "$ROOT/data/split"
-  mkdir $ROOT/data/split
+if [ ! -d "$ROOT/split" ]; then
+  echo Creating data split folder at "$ROOT/split"
+  mkdir $ROOT/split
 fi
 
 #
 # check wikidata file existance
 #
-if [ ! -f "$ROOT/data/$WIKIDATA_DUMP_FILE" ]; then
+if [ ! -f "$ROOT/$WIKIDATA_DUMP_FILE" ]; then
   echo The wikidata file does not exist
   exit
 fi
@@ -40,7 +44,7 @@ fi
 # either add them to the list - -l en,de,ru - or skip the language option altogether. 
 # If you need sitelinks, remove the -s option.
 #
-nohup ./munge.sh -f $ROOT/data/$WIKIDATA_DUMP_FILE -d $ROOT/data/split -l en &
+nohup ./munge.sh -f $ROOT/$WIKIDATA_DUMP_FILE -d $ROOT/split -l en &
 
 #
 # This will load the data files one by one into the Blazegraph data store. 
@@ -49,4 +53,4 @@ nohup ./munge.sh -f $ROOT/data/$WIKIDATA_DUMP_FILE -d $ROOT/data/split -l en &
 # Run in background and append output to nohup
 # This is necessary since the container runs as a deamon
 #
-nohup ./loadRestAPI.sh -n wdq -d $ROOT/data/split &
+nohup ./loadRestAPI.sh -n wdq -d $ROOT/split &

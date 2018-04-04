@@ -6,16 +6,14 @@
 # @2018 Loreto Parisi (loretoparisi at gmail dot com)
 #
 
+# image root folder
+HOST_VOLUME=/root/data
+IMAGE=sparql
+
 # wikidata dump volume folder
 LOCAL_VOLUME=$1
 # service port
 PORT=$2
-# command to launch
-CMD=$3
-
-# image root folder
-HOST_VOLUME=/root/data
-IMAGE=sparql
 
 if [ -z "$PORT" ]; then
 PORT=9999

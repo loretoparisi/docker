@@ -6,6 +6,12 @@
 # @2018 Loreto Parisi (loretoparisi at gmail dot com)
 #
 
+# wikidata dump volume folder
+# it will contain the split folder
+# and the wikidata journal file: wikidata.jnl
+# example: /root/wikidata
+ROOT=/root/data
+
 convertsecs() { #Function used to convert seconds into HH:MM:SS
     ((h=${1}/3600))
     ((m=(${1}%3600)/60))
@@ -20,7 +26,7 @@ NOW=$(exec date +%s)
 cmd() {
     #echo it"'"s fact of life than shell   # Replace by *your*
     #echo quoting can be a '"nightmare"'   # actual commands
-    ls -hl /root/data/wikidata.jnl
+    ls -hl $ROOT/wikidata.jnl
 }
 typeset -fx cmd
 

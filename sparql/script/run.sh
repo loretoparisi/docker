@@ -6,6 +6,12 @@
 # @2018 Loreto Parisi (loretoparisi at gmail dot com)
 #
 
+# wikidata dump volume folder
+# it will contain the split folder
+# and the wikidata journal file: wikidata.jnl
+# example: /root/wikidata
+ROOT=/root/data
+
 # blazegraph log file
 LOGS=$ROOT/server.log
 
