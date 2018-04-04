@@ -43,7 +43,7 @@ Reading model parameters from test
 
 To train a new model using the CMUDict in the `data/dict/cmudict` folder and save a model in the `data/models/cmudict` folder
 ```
-$ g2p-seq2seq --train data/dict/cmudict/cmudict.dict --model test &
+$ g2p-seq2seq --train data/dict/cmudict/cmudict-ipa.dict --model data/models/cmudict 2>&1 >> train.log
 ```
 
 If you are not allowed to share a volume between the host and the container, you can ccopy a saved model from the `g2p-seq2seq` container to a host local volume, supposed that the container id was `5a603fa31d38`
