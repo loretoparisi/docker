@@ -6,6 +6,9 @@
 # @2018 Loreto Parisi (loretoparisi at gmail dot com)
 #
 
+# blazegraph install folder
+BLAZEGRAPH_HOME=/root/blazegraph
+
 # wikidata dump volume folder
 # it will contain the split folder
 # and the wikidata journal file: wikidata.jnl
@@ -20,5 +23,8 @@ LOGS=$ROOT/server.log
 # to accept incoming connections from the HOST IP
 HOST=0.0.0.0
 export HOST=$HOST
+
+# entering blazegraph root folder
+cd $BLAZEGRAPH_HOME/
 
 ./runBlazegraph.sh 2>&1 >> $LOGS &

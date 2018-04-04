@@ -6,6 +6,9 @@
 # @2018 Loreto Parisi (loretoparisi at gmail dot com)
 #
 
+# blazegraph install folder
+BLAZEGRAPH_HOME=/root/blazegraph
+
 # wikidata dump volume folder
 # it will contain the split folder
 # and the wikidata journal file: wikidata.jnl
@@ -14,6 +17,9 @@ ROOT=/root/data
 
 # blazegraph log file
 LOGS=$ROOT/update.log
+
+# entering blazegraph root folder
+cd $BLAZEGRAPH_HOME/
 
 #
 # To update the database from Wikidata fresh edits, 

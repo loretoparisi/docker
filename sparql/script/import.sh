@@ -6,6 +6,9 @@
 # @2018 Loreto Parisi (loretoparisi at gmail dot com)
 #
 
+# blazegraph install folder
+BLAZEGRAPH_HOME=/root/blazegraph
+
 # wikidata dump volume folder
 # it will contain the split folder
 # and the wikidata journal file: wikidata.jnl
@@ -32,6 +35,9 @@ if [ ! -f "$ROOT/$WIKIDATA_DUMP_FILE" ]; then
   echo The wikidata file does not exist
   exit
 fi
+
+# entering blazegraph root folder
+cd $BLAZEGRAPH_HOME/
 
 # 
 # Pre-process the dump with Munger utility:
