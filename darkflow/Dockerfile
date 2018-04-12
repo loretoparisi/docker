@@ -145,4 +145,4 @@ RUN echo "./flow3 --model bin/yolo.cfg --load bin/yolo.weights --demo samples/vi
 CMD ["bash"]
 
 #install TF python module
-RUN python3 setup.py build_ext --inplace
+#RUN python3 setup.py build_ext --inplace
