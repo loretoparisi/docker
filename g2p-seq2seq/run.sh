@@ -20,4 +20,4 @@ fi
 
 # run as daemon to support async training
 echo "Running $IMAGE data folder $DATA_HOST..."
-docker run -td -v $DATA_HOST:/root/data $IMAGE
+nvidia-docker run -td -v $DATA_HOST:/root/data $IMAGE

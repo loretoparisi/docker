@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --upgrade pip
 
 # tensorflow >= 1.3.0 and tensor2tensor >= 1.4.0
+RUN export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}/usr/local/cuda/extras/CUPTI/lib64
 RUN \
     pip install tensorflow-gpu && \
     pip install tensor2tensor
@@ -41,8 +42,5 @@ RUN \
     cd g2p-seq2seq/ && \
     python setup.py install && \
     cd -
-
-# check tensorflow version
-RUN python -c 'import tensorflow as tf; print(tf.__version__)'
 
 CMD ["bash"]
