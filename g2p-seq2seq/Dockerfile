@@ -26,18 +26,13 @@ RUN apt-get update && apt-get install -y \
 # pip
 RUN pip install --upgrade pip
 
-# download pretrained model
-RUN \
-    wget -q -O g2p-seq2seq-cmudict.tar.gz https://sourceforge.net/projects/cmusphinx/files/G2P%20Models/g2p-seq2seq-cmudict.tar.gz/download && \
-    tar xf g2p-seq2seq-cmudict.tar.gz
-
 # download CMU Dict
 RUN \
     git clone https://github.com/cmusphinx/cmudict
 
 # clone g2p-seq2seq.git fork
 RUN \
-    git clone https://github.com/loretoparisi/g2p-seq2seq.git && \
+    git clone https://github.com/ParisiLabs/g2p-seq2seq && \
     cd g2p-seq2seq/ && \
     python setup.py install && \
     cd -
