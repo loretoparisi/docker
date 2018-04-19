@@ -21,7 +21,9 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     wget \
-    vim
+    vim \
+    python-pip python-dev \
+    ipython
 
 # pip
 RUN pip install --upgrade pip
@@ -29,7 +31,7 @@ RUN pip install --upgrade pip
 # tensorflow >= 1.3.0 and tensor2tensor >= 1.4.0
 RUN export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}/usr/local/cuda/extras/CUPTI/lib64
 RUN \
-    pip install tensorflow-gpu && \
+    pip install tensorflow-gpu==1.4 && \
     pip install tensor2tensor
 
 # download CMU Dict
