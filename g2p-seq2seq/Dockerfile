@@ -9,7 +9,7 @@
 # Copyright (c) 2018 Loreto Parisi - https://github.com/loretoparisi/docker
 #
 
-FROM tensorflow/tensorflow:1.6.0
+FROM tensorflow/tensorflow:latest-gpu
 
 MAINTAINER Loreto Parisi loretoparisi@gmail.com
 
