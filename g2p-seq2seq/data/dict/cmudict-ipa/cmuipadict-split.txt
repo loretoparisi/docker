@@ -38492,7 +38492,6 @@ erotic	ɪ r ɒ t ɪ k
 erotica	ɪ r ɒ t ɪ ɪ ə
 eroticism	ɪ r ɒ t ɪ s z ə m
 erpelding	p l d ɪ ŋ
-erps	
 err	e r
 err(1)	e r
 erra	e r ə
@@ -76487,8 +76486,6 @@ medico	m e d ɪ k əʊ
 medics	m e d ɪ k s
 medicus	m e d ɪ k ʌ s
 medieval	m e d ɪ i: v l
-medieval(1)	
-medieval(2)	
 medigap	m d ɪ g æ p
 medil	m e d ɪ l
 medimmune	m d ɪ j u: n
@@ -100529,7 +100526,6 @@ retrial	r ɪ t r ɪə l
 retribution	r ɪ t r ɪ b j u: ʃ n
 retried	r ɪ t r aɪ d
 retrieval	r ɪ t r i: v l
-retrieval(1)	
 retrieve	r ɪ t r i: v
 retrieve(1)	r ɪ t r i: v
 retrieved	r ɪ t r i: v d
