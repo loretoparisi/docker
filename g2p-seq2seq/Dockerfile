@@ -32,7 +32,7 @@ RUN pip install --upgrade pip
 RUN export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}/usr/local/cuda/extras/CUPTI/lib64
 RUN \
     pip install tensorflow-gpu==1.4 && \
-    pip install tensor2tensor
+    pip install tensor2tensor==1.5.7
 
 # download CMU Dict
 RUN \
