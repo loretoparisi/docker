@@ -39,7 +39,7 @@ RUN \
     git clone https://github.com/cmusphinx/cmudict
 
 # install g2p-seq2seq.git
-RUN git clone https://github.com/ParisiLabs/g2p-seq2seq
+RUN git clone https://github.com/cmusphinx/g2p-seq2seq
 COPY src/setup.py g2p-seq2seq/setup.py
 RUN \
     cd g2p-seq2seq/ && \
