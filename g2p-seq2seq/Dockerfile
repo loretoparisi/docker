@@ -31,16 +31,17 @@ RUN pip install --upgrade pip
 # tensorflow >= 1.3.0 and tensor2tensor >= 1.4.0
 RUN export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}/usr/local/cuda/extras/CUPTI/lib64
 RUN \
-    pip install tensorflow-gpu==1.4 && \
+    pip install tensorflow-gpu==1.4.0 && \
     pip install tensor2tensor==1.5.7
 
 # download CMU Dict
 RUN \
     git clone https://github.com/cmusphinx/cmudict
 
-# clone g2p-seq2seq.git fork
+# install g2p-seq2seq.git
+RUN git clone https://github.com/ParisiLabs/g2p-seq2seq
+COPY src/setup.py g2p-seq2seq/setup.py
 RUN \
-    git clone https://github.com/ParisiLabs/g2p-seq2seq && \
     cd g2p-seq2seq/ && \
     python setup.py install && \
     cd -
