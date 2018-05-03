@@ -34,7 +34,7 @@ $ export g2p_split_phonemes=False
 
 To run an inference from a seq2seq model saved in the `data/models` folder like the `cmudict/`
 ```
-root@5a603fa31d38:~# echo "hello" | g2p-seq2seq --interactive --model data/models/cmudict/
+root@5a603fa31d38:~# echo "hello" | g2p-seq2seq --interactive --model_dir data/models/cmudict/
 Loading vocabularies from test
 Creating 2 layers of 64 units.
 Reading model parameters from test
@@ -43,7 +43,7 @@ Reading model parameters from test
 
 To train a new model using the CMUDict in the `data/dict/cmudict` folder and save a model in the `data/models/cmudict` folder
 ```
-$ g2p-seq2seq --train data/dict/cmudict/cmudict.dict --model data/models/cmudict 2>&1 >> train.log &
+$ g2p-seq2seq --train data/dict/cmudict/cmudict.dict --model_dir data/models/cmudict 2>&1 >> train.log &
 ```
 
 Do not forget the `&` (ampersand) to run the process in background. You can still you can check the logs (and errors):
