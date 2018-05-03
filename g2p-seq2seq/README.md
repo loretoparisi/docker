@@ -25,13 +25,6 @@ drwxrwxr-x 4 1000 1000 4096 Mar 27 09:00 dict
 drwxrwxr-x 3 1000 1000 4096 Mar 27 09:00 models
 ```
 
-To configure the model you need to define the `g2p_size` that is the size of the neural network and the `g2p_split_phonemes` boolean that set to True to split by character the phonemes column in the train dataset, if it was not split already. You must set this env for inference, train and test.
-
-```
-$ export g2p_size=512
-$ export g2p_split_phonemes=False
-```
-
 To run an inference from a seq2seq model saved in the `data/models` folder like the `cmudict/`
 ```
 root@5a603fa31d38:~# echo "hello" | g2p-seq2seq --interactive --model_dir data/models/cmudict/
