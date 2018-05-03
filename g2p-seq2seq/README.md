@@ -25,16 +25,9 @@ drwxrwxr-x 4 1000 1000 4096 Mar 27 09:00 dict
 drwxrwxr-x 3 1000 1000 4096 Mar 27 09:00 models
 ```
 
-To configure the model you need to define the `g2p_size` that is the size of the neural network and the `g2p_split_phonemes` boolean that set to True to split by character the phonemes column in the train dataset, if it was not split already. You must set this env for inference, train and test.
-
-```
-$ export g2p_size=512
-$ export g2p_split_phonemes=False
-```
-
 To run an inference from a seq2seq model saved in the `data/models` folder like the `cmudict/`
 ```
-root@5a603fa31d38:~# echo "hello" | g2p-seq2seq --interactive --model data/models/cmudict/
+root@5a603fa31d38:~# echo "hello" | g2p-seq2seq --interactive --model_dir data/models/cmudict/
 Loading vocabularies from test
 Creating 2 layers of 64 units.
 Reading model parameters from test
@@ -43,7 +36,7 @@ Reading model parameters from test
 
 To train a new model using the CMUDict in the `data/dict/cmudict` folder and save a model in the `data/models/cmudict` folder
 ```
-$ g2p-seq2seq --train data/dict/cmudict/cmudict.dict --model data/models/cmudict 2>&1 >> train.log &
+$ g2p-seq2seq --train data/dict/cmudict/cmudict.dict --model_dir data/models/cmudict 2>&1 >> train.log &
 ```
 
 Do not forget the `&` (ampersand) to run the process in background. You can still you can check the logs (and errors):
