@@ -1,2 +1,1 @@
-num_layers:2
-size:64
+{"num_hidden_layers": "3", "num_heads": "4", "batch_size": "4096", "length_bucket_step": "1.5", "filter_size": "512", "max_length": "30", "eval_drop_long_sequences": "1", "hidden_size": "256", "min_length_bucket": "6"}
