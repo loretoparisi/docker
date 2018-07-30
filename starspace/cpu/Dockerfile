@@ -22,6 +22,7 @@ RUN \
     automake \
 	libtool \
 	build-essential \
+	unzip \
 	git \
 	wget
 
