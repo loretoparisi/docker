@@ -35,7 +35,7 @@ RUN npm install n -g
 RUN n $NODE_VERSION
 
 # clone and install wikidata
-RUN git clone --recurse-submodules https://gerrit.wikimedia.org/r/wikidata/query/rdf wikidata-query-rdf
+RUN git clone --recurse-submodules https://github.com/wikimedia/wikidata-query-rdf wikidata-query-rdf
 RUN \
     cd $HOME/wikidata-query-rdf && \
     mvn package

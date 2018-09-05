@@ -19,9 +19,10 @@ WORKDIR /starspace
 RUN \
 	apt-get update && apt-get install -y \
 	autoconf \
-    automake \
+        automake \
 	libtool \
 	build-essential \
+	unzip \
 	git \
 	wget
 
@@ -35,7 +36,11 @@ RUN \
 RUN \
 	git clone https://github.com/facebookresearch/Starspace.git && \
 	cd Starspace && \
-	make
+	make && \
+	make embed_doc && \
+	make query_nn && \
+	make print_ngrams && \
+	make query_predict
 
 # defaults command
 CMD ["bash"]
