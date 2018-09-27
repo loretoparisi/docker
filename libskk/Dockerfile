@@ -27,7 +27,8 @@ RUN \
 	libjson-glib-dev \
 	libxkbcommon-dev \
 	gettext-base \
-	gobject-introspection
+	gobject-introspection \
+	locate
 
 RUN apt-get install -y \
 	git	\
@@ -36,11 +37,11 @@ RUN apt-get install -y \
 RUN add-apt-repository ppa:vala-team
 RUN apt-get install -y valac
 
-	# dictionaries
+# dictionaries
 RUN \
 	git clone https://github.com/skk-dev/dict.git
 
-# # build libskk
+# build libskk
 RUN \
 	git clone https://github.com/ueno/libskk.git && \
 	export PATH=${PATH}:/usr/local/opt/gettext/bin && \
@@ -48,8 +49,20 @@ RUN \
 	./autogen.sh && \
 	make && \
 	make install
+	
+# lib
+RUN updatedb
+RUN ldconfig /usr/local/lib/
 
+# export env
 ENV DICT /root/dict
+
+# test
+RUN  \
+	echo "A i SPC" | skk -f $DICT/SKK-JISYO.L && \
+	echo "K a p a SPC K a SPC" | skk -f $DICT/SKK-JISYO.L && \
+	echo "r k" | skk -r tutcode -f $DICT/SKK-JISYO.L && \
+	echo "a (usleep 50000) b (usleep 200000)" | skk -r nicola -f $DICT/SKK-JISYO.L
 
 # defaults command
 CMD ["bash"]
