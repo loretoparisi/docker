@@ -49,6 +49,14 @@ RUN \
 	./autogen.sh && \
 	make && \
 	make install
+
+# build kakasi
+RUN \
+	git clone https://github.com/loretoparisi/kakasi.git && \
+	cd kakasi/ && \
+	./configure && \
+	make && \
+	make install
 	
 # lib
 RUN updatedb
@@ -57,12 +65,21 @@ RUN ldconfig /usr/local/lib/
 # export env
 ENV DICT /root/dict
 
-# test
+# test skk
 RUN  \
 	echo "A i SPC" | skk -f $DICT/SKK-JISYO.L && \
 	echo "K a p a SPC K a SPC" | skk -f $DICT/SKK-JISYO.L && \
 	echo "r k" | skk -r tutcode -f $DICT/SKK-JISYO.L && \
 	echo "a (usleep 50000) b (usleep 200000)" | skk -r nicola -f $DICT/SKK-JISYO.L
+
+# test kakasi
+RUN \
+	echo "日本が好きです。" | iconv -f utf8 -t eucjp | kakasi -i euc -Ha -Ka -Ja -Ea -ka && \
+	echo "日本が好きです。" | iconv -f utf8 -t eucjp | kakasi -i euc -w | kakasi -i euc -Ha -Ka -Ja -Ea -ka && \
+	echo "退屈であくびばっかしていた毎日" | iconv -f utf8 -t eucjp | kakasi -i euc -Ha -Ka -Ja -Ea -ka -s && \
+	echo "7月31日" | iconv -f utf8 -t shift-jis | kakasi -Ja -Ha -Ka -Ea -s | iconv -f shift-jis -t utf8 && \
+	echo "7月31日" | iconv -f utf8 -t shift-jis | kakasi -JH -KH -Ea -s | iconv -f shift-jis -t utf8 && \
+	echo "7月31日" | kakasi -JH -KH -Ea -s -iutf8 -outf8
 
 # defaults command
 CMD ["bash"]
